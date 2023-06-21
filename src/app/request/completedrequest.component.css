@@ -1,0 +1,12 @@
+.incomediv {
+  background: rgba(130, 192, 154, 0.2);
+  border-radius: 9px;
+}
+.main-line {
+  background: #82c09a;
+  opacity: 0.5;
+}
+.divcontainer {
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+}

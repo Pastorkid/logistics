@@ -1,0 +1,469 @@
+<div
+  class="flex items-center flex-row justify-start w-[90%] mx-[5%] lg:py-0 py-5 md:my-5 gap-10"
+>
+  <span class="text-[20px] font-bold text-[#2E3A59]">Dispatcher Profile</span>
+</div>
+<div
+  class="flex items-center flex-row justify-start w-[90%] mx-[5%] lg:py-0 py-5 md:my-5 gap-10"
+>
+  <div class="flex flex-row gap-[2px]">
+    <div
+      class="h-[50px] w-[50px] rounded-[50%] flex justify-center items-center border-[1px] border-solid"
+    >
+      <img
+        *ngIf="dispatcherdetails.driver[0].dispatcherImage != undefined"
+        class="h-full w-full"
+        src="{{ dispatcherdetails.driver[0].dispatcherImage }}"
+      />
+      <img
+        *ngIf="dispatcherdetails.driver[0].dispatcherImages === undefined"
+        class="h-full w-full rounded-[50%]"
+        src="/assets/placeholder.jpg"
+      />
+    </div>
+    <div class="flex flex-col gap-[2px]">
+      <span
+        class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+        >{{ dispatcherdetails.driver[0].name }}</span
+      >
+      <span
+        class="text-[#000F08] font-medium text-[10px] leading-[150%] tracking-tighter"
+        >{{ dispatcherdetails.driver[0].phone }}</span
+      >
+    </div>
+  </div>
+  <p
+    class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+  >
+    {{ dispatcherdetails.driver[0].email }}
+  </p>
+  <p
+    class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+  >
+    {{ dispatcherdetails.driver[0].state }}
+  </p>
+  <div class="w-[4rem]">
+    <p
+      class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+    >
+      {{ dispatcherdetails.driver[0].month + dispatcherdetails.driver[0].year }}
+    </p>
+  </div>
+  <p
+    class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+  >
+    Request Taken: {{ dispatcherdetails.driver[0].AcceptedPackage.length }}
+  </p>
+</div>
+<div
+  class="flex items-center flex-row justify-start w-[92%] mx-[4%] lg:py-0 py-5 md:my-5 flex-wrap"
+>
+  <div class="flex justify-start mt-8 flex-wrap w-full gap-10">
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold">BVN Number</span>
+      <div
+        class="userInput h-[50px]  flex flex-row items-center justify-between"
+      >
+        <input
+          type="text"
+          value="{{ dispatcherdetails.driver[0].bvn }}"
+          class="text-[#1C3738] ml-4"
+          #inputTargetone
+        />
+        <div class="flex justify-end items-center flex-row mr-4 gap-5 relative">
+          <div class="bg-[#CFD9E0] h-[50px] w-[2px]"></div>
+          <img
+            class="cursor-pointer"
+            src="/assets/Union.svg"
+            [ngxClipboard]="inputTargetone"
+            (click)="togleshowone()"
+          />
+          <div class="absolute right-0 top-0">
+            <span>{{ titleone }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold">NIN Number</span>
+      <div
+        class="userInput h-[50px]  flex flex-row items-center justify-between"
+      >
+        <input
+          type="text"
+          value="{{ dispatcherdetails.driver[0].nin }}"
+          class="text-[#1C3738] ml-4"
+          #inputTargettwo
+        />
+        <div class="flex justify-end items-center flex-row mr-4 gap-5 relative">
+          <div class="bg-[#CFD9E0] h-[50px] w-[2px]"></div>
+          <img
+            class="cursor-pointer"
+            src="/assets/Union.svg"
+            [ngxClipboard]="inputTargettwo"
+            (click)="togleshowtwo()"
+          />
+          <div class="absolute right-0 top-0">
+            <span>{{ titletwo }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold">ACCOUNT Number</span>
+      <div
+        class="userInput h-[50px] flex flex-row items-center justify-between"
+      >
+        <input
+          type="text"
+          value="{{ dispatcherdetails.driver[0].accountNumber }}"
+          class="text-[#1C3738] ml-4"
+          #inputTargetthree
+        />
+        <div class="flex justify-end items-center flex-row mr-4 gap-5 relative">
+          <div class="bg-[#CFD9E0] h-[50px] w-[2px]"></div>
+          <img
+            class="cursor-pointer"
+            src="/assets/Union.svg"
+            [ngxClipboard]="inputTargetthree"
+            (click)="togleshowthree()"
+          />
+          <div class="absolute right-0 top-0">
+            <span>{{ titlethree }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold">ACCOUNT Name</span>
+      <div
+        class="userInput h-[50px] flex flex-row items-center justify-between"
+      >
+        <input
+          type="text"
+          value="{{ dispatcherdetails.driver[0].accountName }}"
+          class="text-[#1C3738] ml-4"
+          #inputTargetfour
+        />
+        <div class="flex justify-end items-center flex-row mr-4 gap-5 relative">
+          <div class="bg-[#CFD9E0] h-[50px] w-[2px]"></div>
+          <img
+            class="cursor-pointer"
+            src="/assets/Union.svg"
+            [ngxClipboard]="inputTargetfour"
+            (click)="togleshowfour()"
+          />
+          <div class="absolute right-0 top-0">
+            <span>{{ titlefour }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col items-start w-[23%] gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold">BANK Name</span>
+      <div
+        class="userInput h-[50px] flex flex-row items-center justify-between"
+      >
+        <input
+          type="text"
+          value="{{ dispatcherdetails.driver[0].bankName }}"
+          class="text-[#1C3738] ml-4"
+          #inputTargetfive
+        />
+        <div class="flex justify-end items-center flex-row mr-4 gap-5 relative">
+          <div class="bg-[#CFD9E0] h-[50px] w-[2px]"></div>
+          <img
+            class="cursor-pointer"
+            src="/assets/Union.svg"
+            [ngxClipboard]="inputTargetfive"
+            (click)="togleshowfive()"
+          />
+          <div class="absolute right-0 top-0">
+            <span>{{ titlefive }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <div
+  class="flex items-center flex-row justify-start w-[92%] mx-[4%] lg:py-0 py-5 md:my-5 flex-wrap"
+>
+  <div class="flex justify-start mt-8 flex-wrap w-full gap-3">
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold w-full"
+        >Birth Certificate</span
+      >
+      <div class="flex justify-start items-center gap-2 cursor-pointer">
+        <a
+          class="text-[#0059C8] text-[16px] font-medium"
+          href="{{ dispatcherdetails.driver[0].dobImage}}"
+          target="_blank"
+          >View upload</a
+        >
+        <img src="assets/upload.svg" />
+      </div>
+    </div>
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold">NIN Card</span>
+      <div class="flex justify-start items-center gap-2 cursor-pointer">
+        <a
+          class="text-[#0059C8] text-[16px] font-medium"
+          href="{{ dispatcherdetails.driver[0].ninImage }}"
+          target="_blank"
+          >View upload</a
+        >
+        <img src="assets/upload.svg" />
+      </div>
+    </div>
+  
+
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold"
+        >Driver’s Licenses Card</span
+      >
+      <div class="flex justify-start items-center gap-2 cursor-pointer">
+        <a
+          class="text-[#0059C8] text-[16px] font"
+          href="{{ dispatcherdetails.driver[0].driverLicenseImage }}"
+          target="_blank"
+          >View upload</a
+        >
+        <img src="assets/upload.svg" />
+      </div>
+    </div>
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold"
+        >Total Amount Made</span
+      >
+      <h3
+        class="text-[#1C3738] text-[25px] font-medium leading-[150%] tracking-tighter"
+      >
+        ₦{{ driverpayment.totalDriverRevenue }}
+      </h3>
+    </div>
+  
+ 
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold"
+        >Total Amount Company Made</span
+      >
+      <h3
+        class="text-[#FF325C] text-[25px] font-medium leading-[150%] tracking-tighter"
+      >
+        ₦{{ driverpayment.totalCompanyRevenue }}
+      </h3>
+    </div>
+    <div class="flex flex-col items-start w-[23%]  gap-4 py-5">
+      <span class="text-[#1C3738] text-[15px] font-semibold">Payment Plan</span>
+      <h3
+        class="text-[#1C3738] text-[25px] font-medium leading-[150%] tracking-tighter"
+      >
+        {{ dispatcherdetails.driver[0].paymentOption }}
+      </h3>
+    </div>
+    </div>
+  
+</div>
+<div
+  class="flex flex-row justify-center items-center w-[90%] mx-[5%] lg:pt-10 py-5 md:my-5 gap-10"
+  *ngIf="packages.length === 0"
+>
+  <h1 class="text-[#1c3738] text-[16px] font-medium">
+    No Delivered packages exist for this dispatcher
+  </h1>
+</div>
+
+<div
+  class="flex items-center flex-row justify-end w-[90%] mx-[5%] lg:pt-10 py-5 md:my-5 gap-10"
+  *ngIf="packages.length != 0"
+>
+  <div
+    class="flex items-center flex-row justify-start lg:py-0 py-5 md:my-5 gap-10"
+  >
+    <span class="text-[16px] font-bold text-[#1C3738]">Request List</span>
+    <div class="searchdiv w-[220px] h-[45px] flex items-center px-2 relative">
+      <input
+        matInput
+        class="w-full text-[#9DA3BB] font-bold text-[14px] leading-[100%]"
+        type="text"
+        placeholder="Search Keyword"
+        (keyup)="applyFilter($event)"
+      />
+      <img
+        class="absolute right-[20px] cursor-pointer"
+        src="/assets/search_icon.svg"
+      />
+    </div>
+  </div>
+</div>
+<div class="absolute" *ngIf="!dataSource">
+  <mat-spinner></mat-spinner>
+</div>
+<div
+  class="flex items-center w-[90%] mx-[5%] relative divcontainer mt-8 flex-col"
+  *ngIf="packages.length != 0"
+>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 w-full"
+    *ngIf="dataSource"
+  >
+    <!-- Customer Column -->
+    <ng-container matColumnDef="Customer">
+      <th mat-header-cell *matHeaderCellDef>Customer</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex flex-row gap-[2px]">
+          <div
+            class="h-[50px] w-[50px] rounded-[50%] flex justify-center items-center border-[1px] border-solid"
+          >
+            <img
+              *ngIf="element.user.customerImage != undefined"
+              class="h-full w-full"
+              src="{{ element.user.customerImage }}"
+            />
+            <img
+              *ngIf="element.user.customerImage === undefined"
+              class="h-full w-full rounded-[50%]"
+              src="/assets/placeholder.jpg"
+            />
+          </div>
+          <div class="flex flex-col gap-[2px]">
+            <span
+              class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+              >{{ element.user.name }}</span
+            >
+            <span
+              class="text-[#000F08] font-medium text-[10px] leading-[150%] tracking-tighter"
+              >{{ element.user.phone }}</span
+            >
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Location Info">
+      <th mat-header-cell *matHeaderCellDef>Location Info</th>
+      <td mat-cell *matCellDef="let element">{{ element.user.state }}</td>
+    </ng-container>
+
+    <!-- Distance_Time Column -->
+    <ng-container matColumnDef="Request Time">
+      <th mat-header-cell *matHeaderCellDef>Request Time</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex flex-col gap-[2px]">
+          <span
+            class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+            >{{ element.user.month }}</span
+          >
+          <span
+            class="text-[#000F08] font-medium text-[10px] leading-[150%] tracking-tighter"
+            >{{ element.user.year }}</span
+          >
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Amount Charged">
+      <th mat-header-cell *matHeaderCellDef>Amount Charged</th>
+      <td mat-cell *matCellDef="let element">#{{ element.price }}</td>
+    </ng-container>
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef>Year</th>
+      <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+    </ng-container>
+
+    <!-- Income Column -->
+    <ng-container matColumnDef="Amount Made(Business)">
+      <th mat-header-cell *matHeaderCellDef>Amount Made(DriverPrice)</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="text-[#f37a92] text-[12px] font-medium">
+          {{ element.driverPrice }}
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Payment Status">
+      <th mat-header-cell *matHeaderCellDef>Payment Status</th>
+      <td mat-cell *matCellDef="let element" class="text-[#f37a92]">
+        <div class="flex flex-row justify-start items-center">
+          <!-- <common-button></common-button> -->
+          <div
+            [ngClass]="{
+              justivecommonbutton: element.isDriverPaid === false,
+              setngclass: element.isDriverPaid === true
+            }"
+            class="flex w-[65px] h-[32px] rounded-[34px] items-center border-solid border-[2px] border-[#1C3738]"
+          >
+            <div
+              *ngIf="element.isDriverPaid === false"
+              class="h-[24px] w-[24px] rounded-[50%] bg-[#FF325C] cursor-pointer"
+              (click)="isunpaidtoggle(element.id, true)"
+            ></div>
+            <div
+              *ngIf="element.isDriverPaid === true"
+              class="h-[24px] w-[24px] rounded-[50%] bg-[#fff] cursor-pointer"
+              (click)="ispaidtoggle(element.id, false)"
+            ></div>
+          </div>
+          <span
+            class="text-[12px] font-medium leading-[150%] tracking-tighter text-[#ff325c]"
+            *ngIf="element.isDriverPaid === false"
+            >{{ newparentstatusone }}</span
+          >
+          <span
+            class="text-[12px] font-medium leading-[150%] tracking-tighter text-[#1c3738]"
+            *ngIf="element.isDriverPaid === true"
+            >{{ newparentstatustwo }}</span
+          >
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div
+    class="w-full absolute flex items-center flex-row min-h-[500px] justify-center bg-blend-overlay bg-[#00000052] z-[20]"
+    *ngIf="isloading"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div
+    *ngIf="hidesimilarmodal"
+    class="similarmodal !absolute top-[10%] left-[40%] lg:w-[19%] md:w-[50%] w-[60%] h-[230px] py-6 flex flex-col items-center gap-4 px-3"
+  >
+    <strong class="text-[#1C3738] font-bold text-[20px]">Notice</strong>
+    <p class="text-[#1C3738] font-bold text-[15px] text-center">
+      This driver has been payed for this particular package:{{
+        isdriverstatus
+      }}
+    </p>
+
+    <button
+      type="submit"
+      class="w-[70px] text-white bg-[#1C3738] py-2 cursor-pointer rounded-[4px] font-medium text-[16px] text-center"
+      (click)="closeSimilarModal()"
+    >
+      Close
+    </button>
+  </div>
+</div>
+<div
+  class="w-[90%] mx-[5%] pt-3 items-center flex lg:justify-between relative mt-2"
+  *ngIf="packages.length != 0"
+>
+  <div class="main-line w-full h-[2px] absolute top-0"></div>
+  <span class="text-[#232638] font-medium text-[17px]"
+    >Total Customers: {{ packages.length }}</span
+  >
+  <mat-paginator
+    #paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    aria-label="select page of users"
+  ></mat-paginator>
+</div>

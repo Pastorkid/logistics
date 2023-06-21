@@ -1,0 +1,10 @@
+.divcontainer {
+  box-shadow: 0px 50px 500px rgba(0, 0, 0, 0.02),
+    0px 32.4074px 292.824px rgba(0, 0, 0, 0.0151852),
+    0px 19.2593px 159.259px rgba(0, 0, 0, 0.0121481),
+    0px 10px 81.25px rgba(0, 0, 0, 0.01),
+    0px 4.07407px 40.7407px rgba(0, 0, 0, 0.00785185),
+    0px 0.925926px 19.6759px rgba(0, 0, 0, 0.00481481);
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+}

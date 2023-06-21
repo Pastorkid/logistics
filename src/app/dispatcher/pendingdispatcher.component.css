@@ -1,0 +1,56 @@
+.divcontainer {
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+}
+.modal {
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 2px 4px 30px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  z-index: 10;
+  backdrop-filter: blur(3px);
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+}
+@media screen and (min-width: 1024px) {
+  .modal {
+    transform: translate(-26%, 28%);
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .modal {
+    transform: translate(-50%, -32%);
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .modal {
+    transform: translate(-50%, -50%);
+  }
+}
+/* 
+td.mat-cell:nth-of-type(1),
+td.mat-cell:nth-of-type(2) {
+  width: 19% !important;
+  padding-right: 0px !important;
+  margin-left: 1% !important;
+}
+td.mat-cell:nth-of-type(3) {
+  width: 9% !important;
+  padding-right: 0px !important;
+  margin-left: 1% !important;
+} */
+
+.userInput {
+  background: #ffffff;
+  border: 1px solid #cfd9e0;
+  box-shadow: inset 0px 2px 0px rgba(231, 235, 238, 0.2);
+  border-radius: 6px;
+}
+input {
+  outline: none;
+  border: 0px;
+}
+.main-line {
+  background: #82c09a;
+  opacity: 0.5;
+}

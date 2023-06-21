@@ -1,0 +1,84 @@
+<div class="w-full bg-[#1E1E1E] flex lg:justify-end min-h-[100vh] divcontainer">
+  <div
+    class="flex flex-col w-full lg:w-[84%] lg:ml-[15%] lg:mr-[1%] gap-6 bg-white lg:rounded-[30px] min-h-[1500px] justify-items-end my-4"
+  >
+    <div
+      class="flex items-center flex-row justify-between w-[90%] mx-[5%] lg:py-0 py-5 md:mt-5"
+    >
+      <div class="flex flex-row justify-start items-start gap-5">
+        <p class="font-normal text-[#1C3738] text-[24px]">
+         <app-userlogin></app-userlogin>
+        </p>
+        <img class="leading-[60px]" src="/assets/hand_icon.svg" />
+      </div>
+      <img
+        class="cursor-pointer"
+        src="/assets/backbutton.svg"
+        (click)="onlogout()"
+        title="logout"
+      />
+    </div>
+    <div
+      class="flex items-center flex-row justify-start w-[90%] mx-[5%] lg:py-0 py-5 md:my-5 gap-10"
+    >
+      <span class="text-[20px] font-bold text-[#2E3A59]">Request List</span>
+      <div class="searchdiv w-[220px] h-[45px] flex items-center px-2 relative">
+        <input
+          class="w-full text-[#9DA3BB] font-bold text-[14px] leading-[100%] outline-none"
+          type="search"
+          placeholder="Search Keyword"
+          (keyup)="ongoing.applyFilter($event)"
+          (keyup)="complete.applyFilter($event)"
+        />
+        <img
+          class="absolute right-[20px] cursor-pointer"
+          src="/assets/search_icon.svg"
+        />
+      </div>
+    </div>
+    <div class="w-[90%] mx-[5%] relative flex-col item-start mb-4">
+      <div class="flex justify-start flex-row gap-24">
+        <span
+          class="text-[16px] font-bold text-[#1C3738] relative flex flex-row justify-start gap-3 cursor-pointer"
+          (click)="setOngoing()"
+        >
+          Ongoing({{ requestongoing() }})
+          <img class="cursor-pointer" src="/assets/right_icon.svg" />
+          <div
+            class="main-linediv w-[118px] h-[3px] absolute bottom-[-10px] z-[1]"
+            [hidden]="isOngoingActive"
+          ></div>
+        </span>
+        <span
+          class="text-[16px] font-bold text-[#1C3738] relative flex flex-row justify-start gap-3 cursor-pointer"
+          (click)="setCompleted()"
+        >
+          Completed({{ requestcomplete() }})
+          <img class="cursor-pointer" src="/assets/right_icon.svg" />
+          <div
+            class="main-linediv w-[138px] h-[3px] absolute bottom-[-10px] z-[1]"
+            [hidden]="isCompletedActive"
+          ></div>
+        </span>
+      </div>
+      <div class="main-line w-full h-[2px] absolute bottom-[-10px]"></div>
+    </div>
+    <app-ongoingrequest
+      *ngIf="isOngoingClicked"
+      (Parentevent)="ongoingfuction($event, elval)"
+    ></app-ongoingrequest>
+    <app-completedrequest
+      *ngIf="isCompletedClicked"
+      (Parentevent)="ongoingfuction($event, elval)"
+    ></app-completedrequest>
+
+    <!-- google-maps-demo.component.html start-->
+    <div
+      #elval
+      class="h-[500px] w-[90%] mx-[5%] rounded-[12px] mt-[200px] overflow-clip mb-10"
+    >
+      <app-googlemap [zoomchangeforchild]="zoomchange"></app-googlemap>
+    </div>
+    <!-- google-maps-demo.component.html end-->
+  </div>
+</div>

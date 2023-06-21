@@ -1,0 +1,22 @@
+.divcontainer {
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+}
+/* Style for the folder-icon */
+.folder {
+  background: rgba(130, 192, 154, 0.2);
+}
+/* Style for the graph container */
+.grapholder {
+  background: #f7f9fc;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+}
+/* Style for Dispatcher container */
+.dispatcher {
+  background: #f7f9fc;
+  border-radius: 8px;
+}
+.chart {
+  background-color: #212f3d;
+}

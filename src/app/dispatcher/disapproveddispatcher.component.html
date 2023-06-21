@@ -1,0 +1,120 @@
+<div class="flex items-center w-[90%] mx-[5%] relative divcontainer mt-8">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 w-full"
+    *ngIf="dataSource"
+  >
+    <!-- Customer Column -->
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef>fullname</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex flex-row gap-[2px]">
+          <div
+            class="h-[50px] w-[50px] rounded-[50%] flex justify-center items-center border-[1px] border-solid"
+          >
+            <img
+              *ngIf="element.dispatcherImage != undefined"
+              class="h-full w-full"
+              src="{{ element.dispatcherImage }}"
+            />
+            <img
+              *ngIf="element.dispatcherImage === undefined"
+              class="h-full w-full rounded-[50%]"
+              src="/assets/placeholder.jpg"
+            />
+          </div>
+          <div class="flex flex-col gap-[2px]">
+            <span
+              class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+              >{{ element.name }}</span
+            >
+            <span
+              class="text-[#000F08] font-medium text-[10px] leading-[150%] tracking-tighter"
+              >{{ element.phone }}</span
+            >
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="EmailAddress">
+      <th mat-header-cell *matHeaderCellDef>EmailAddress</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <!-- Distance_Time Column -->
+    <ng-container matColumnDef="Location(state)">
+      <th mat-header-cell *matHeaderCellDef>Location(state)</th>
+      <td mat-cell *matCellDef="let element">{{ element.state }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="month">
+      <th mat-header-cell *matHeaderCellDef>Month</th>
+      <td mat-cell *matCellDef="let element">{{ element.month }}</td>
+    </ng-container>
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef>Year</th>
+      <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+    </ng-container>
+
+    <!-- Income Column -->
+
+    <ng-container matColumnDef="Approvedbutton">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          class="text-[#f37a92] text-[12px] font-medium"
+          (click)="updatestatus(element.id, 'APPROVED')"
+        >
+          Approve
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="View">
+      <th mat-header-cell *matHeaderCellDef>View Profile</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="text-[#f37a92] text-[12px] font-medium">
+          <a (click)="userSelected(element.id)">View</a>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div *ngIf="ongoingactive" class="absolute left-[50%]">
+    <mat-spinner></mat-spinner>
+  </div>
+  <mat-spinner class="!absolute left-[40%]" *ngIf="hidemodal"></mat-spinner>
+  <div
+    *ngIf="hidesimilarmodal"
+    class="similarmodal !absolute top-[10%] left-[40%] lg:w-[19%] md:w-[50%] w-[60%] h-[200px] py-6 flex flex-col items-center gap-4 px-3"
+  >
+    <strong class="text-[#1C3738] font-bold text-[20px]">Notice</strong>
+    <p class="text-[#1C3738] font-bold text-[15px] text-center">
+      Admin Approved sucessfully
+    </p>
+
+    <button
+      type="submit"
+      class="w-[70px] text-white bg-[#1C3738] py-2 cursor-pointer rounded-[4px] font-medium text-[16px] text-center"
+      (click)="closeSimilarModal()"
+    >
+      Close
+    </button>
+  </div>
+</div>
+<div
+  class="w-[90%] mx-[5%] pt-3 items-center flex lg:justify-between relative mt-2"
+>
+  <div class="main-line w-full h-[2px] absolute top-0"></div>
+  <span class="text-[#232638] font-medium text-[17px]"
+    >Total Dispatchers: {{ dispatchers.length }}</span
+  >
+  <mat-paginator
+    #paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    aria-label="select page of users"
+  ></mat-paginator>
+</div>

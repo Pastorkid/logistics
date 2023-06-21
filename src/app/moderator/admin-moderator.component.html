@@ -1,0 +1,156 @@
+<div class="w-full bg-[#1E1E1E] flex lg:justify-end min-h-[100vh] divcontainer">
+  <div
+    class="flex flex-col w-full lg:w-[84%] lg:ml-[15%] lg:mr-[1%] gap-6 bg-white lg:rounded-[30px] min-h-[1500px] justify-items-end my-4"
+  >
+    <div
+      class="flex items-center flex-row justify-between w-[90%] mx-[5%] lg:py-0 py-5 md:mt-5"
+    >
+      <div class="flex flex-row justify-start items-start gap-5">
+        <p class="font-normal text-[#1C3738] text-[24px]">
+          <app-userlogin></app-userlogin>
+        </p>
+        <img class="leading-[60px]" src="/assets/hand_icon.svg" />
+      </div>
+      <img
+        class="cursor-pointer"
+        src="/assets/backbutton.svg"
+        (click)="onlogout()"
+        title="logout"
+      />
+    </div>
+
+    <div
+      class="lg:w-[95%] lg:mx-[2.5%] w-[90%] mx-[5%] flex justify-between md:flex-row flex-col-reverse items-center mt-10 gap-6 md:gap-0"
+    >
+      <p
+        class="text-[#1C3738] font-bold text-[20px] leading-[100%] tracking-tighter"
+      >
+        Moderator List
+      </p>
+      <button
+        class="bg-white border-[1.5px] border-solid border-[#82C09A] py-2 px-2 rounded-[5px] text-center font-medium text-[#1C3738] cursor-pointer"
+        type="button"
+        (click)="hideModal()"
+      >
+        Add New Moderator
+      </button>
+    </div>
+
+    <div
+      class="lg:w-[95%] lg:mx-[2.5%] w-[90%] mx-[5%] flex md:justify-start md:flex-row flex-col items-center gap-6 md:gap-0 flex-wrap relative"
+    >
+      <div
+        class="moderator-box md:w-[180px] w-[70%] ml-[20px] flex-col items-center pb-2 my-2"
+        *ngFor="let moderator of moderators"
+      >
+        <div class="py-6 flex justify-center items-center relative">
+          <img
+            class="absolute right-4 top-4 cursor-pointer"
+            src="/assets/delete-icon.svg"
+            (click)="deleteModerator(moderator.id)"
+          />
+          <img class="text-blue-200" src="/assets/mediatorlist.svg" />
+        </div>
+        <div class="flex justify-center">
+          <span
+            class="font-medium text-[14px] lowercase text-[#1C3738] text-center"
+            >{{ moderator.name }}({{ moderator.role }})</span
+          >
+        </div>
+      </div>
+      <mat-spinner
+        class="!absolute top-[50%] left-[40%]"
+        *ngIf="hideinnerspinner"
+      ></mat-spinner>
+      <div>
+        <div
+          *ngIf="hidesimilarmodal"
+          class="similarmodal !absolute top-[10%] left-[40%] lg:w-[19%] md:w-[50%] w-[60%] h-[200px] py-6 flex flex-col items-center gap-4 px-3"
+        >
+          <strong class="text-[#1C3738] font-bold text-[20px]">Notice</strong>
+          <p class="text-[#1C3738] font-bold text-[15px] text-center">
+            Admin deleted sucessfully
+          </p>
+
+          <button
+            type="submit"
+            class="w-[70px] text-white bg-[#1C3738] py-2 cursor-pointer rounded-[4px] font-medium text-[16px] text-center"
+            (click)="closeSimilarModal()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="hidemodal">
+      <div
+        class="modal lg:w-[40%] md:w-[70%] w-[90%] lg:h-[500px] py-6 md:h-[400px] h-[400px] flex flex-col items-center relative"
+      >
+        <form class="form relative" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="flex flex-row justify-between">
+            <span class="text-[#1C3738] font-bold md:text-[18px] text-[17px]"
+              >Add New Moderator</span
+            >
+
+            <img
+              class="w-[20px] h-[20px] cursor-pointer"
+              src="/assets/cancel_icon.png"
+              (click)="dismissModal()"
+            />
+          </div>
+
+          <formly-form
+            [model]="model"
+            [fields]="fields"
+            [options]="options"
+            [form]="form"
+          ></formly-form>
+          <div class="flex justify-center md:justify-end">
+            <button
+              type="submit"
+              class="md:w-[180px] text-white bg-[#1C3738] h-[50px] cursor-pointer rounded-[4px] w-[280px] font-medium text-[16px] mt-[30px] text-center"
+              [disabled]="!form.valid"
+            >
+              <!-- [disabled]="!form.valid" -->
+              Add New Moderator
+            </button>
+          </div>
+          <mat-spinner
+            class="!absolute top-[50%] left-[40%]"
+            *ngIf="hidespinner"
+          ></mat-spinner>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="hideinnermodal">
+      <div
+        class="modal lg:w-[19%] md:w-[50%] w-[60%] h-[200px] py-6 flex flex-col items-center gap-4 px-3"
+      >
+        <strong class="text-[#1C3738] font-bold text-[20px]">Notice</strong>
+        <p class="text-[#1C3738] font-bold text-[15px] text-center">
+          An Sms has been sent to the new moderator with their newly generated
+          password.
+        </p>
+
+        <button
+          type="submit"
+          class="w-[70px] text-white bg-[#1C3738] py-2 cursor-pointer rounded-[4px] font-medium text-[16px] text-center"
+          (click)="dismissInnerModal()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+    <div class="overlay" *ngIf="hideinnermodal"></div>
+    <div class="overlay" *ngIf="hidemodal"></div>
+
+    <!-- google-maps-demo.component.html -->
+    <div
+      class="h-[700px] w-[90%] mx-[5%] rounded-[12px] mt-[200px] overflow-clip mb-10"
+    >
+      <app-googlemap></app-googlemap>
+    </div>
+    <!-- google-maps-demo.component.html end-->
+  </div>
+</div>

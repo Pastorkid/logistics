@@ -1,0 +1,18 @@
+.divcontainer {
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+}
+
+.main-line {
+  background: #82c09a;
+  opacity: 0.5;
+}
+.main-linediv {
+  background: #1c3738;
+}
+.searchdiv {
+  background: #ffffff;
+  border: 1px solid #f2ecff;
+  box-shadow: 0px 12px 24px rgba(0, 72, 217, 0.05);
+  border-radius: 30px;
+}

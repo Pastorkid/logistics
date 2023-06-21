@@ -1,0 +1,182 @@
+<div class="divcontainer w-full bg-[#1E1E1E] flex lg:justify-end min-h-[100vh]">
+  <div
+    class="flex flex-col w-full lg:w-[84%] lg:ml-[15%] lg:mr-[1%] gap-6 bg-white lg:rounded-[30px] min-h-[1500px] justify-items-end my-4 relative"
+  >
+    <div
+      class="flex items-center flex-row justify-between w-[90%] mx-[5%] lg:py-0 py-5 md:mt-5"
+    >
+      <div class="flex flex-row justify-start items-start gap-5">
+        <p
+          class="font-normal text-[#1C3738] text-[24px] leading-[100%] tracking-tighter"
+        >
+          <app-userlogin></app-userlogin>
+        </p>
+        <img class="leading-[60px]" src="/assets/hand_icon.svg" />
+      </div>
+      <img
+        class="cursor-pointer"
+        src="/assets/backbutton.svg"
+        (click)="onlogout()"
+        title="logout"
+      />
+    </div>
+    <div class="lg:w-[95%] lg:mx-[2.5%] md:w-[90%] md:mx-[5%]">
+      <p
+        class="text-[#1C3738] font-bold lg:ml-20 text-[20px] tracking-[-0.05em] leading-[100%]"
+      >
+        Knowledge base
+      </p>
+    </div>
+    <div
+      class="lg:flex lg:flex-row lg:justify-between w-[90%] mx-[5%] flex-col lg:items-start items-center"
+    >
+      <div class="flex flex-col gap-10 lg:w-[70%] w-full md:w-full">
+        <div class="flex lg:flex-row lg:justify-start gap-5 flex-col">
+          <div
+            class="folder lg:w-[200px] h-20 flex justify-center items-center rounded-[8px]"
+          >
+            <div class="flex justify-center items-center">
+              <img class="" src="/assets/folder-icon.svg" />
+            </div>
+
+            <div
+              class="flex justify-center items-center gap-[10px] flex-row mt-[15px]"
+            >
+              <p
+                class="text-[#1C3738] leading-[100%] text-center font-bold text-[12px] tracking-tighter"
+              >
+                Total Request
+              </p>
+              <div class="flex justify-center items-start mt-[-10px]">
+                <img class="" src="/assets/chevron-right.svg" />
+              </div>
+            </div>
+          </div>
+          <div
+            class="folder lg:w-[200px] h-20 flex justify-center items-center rounded-[8px]"
+          >
+            <img class="" src="/assets/folder-icon.svg" />
+            <div
+              class="flex justify-center items-center gap-[10px] flex-row mt-[15px]"
+            >
+              <p
+                class="text-[#1C3738] leading-[100%] text-center font-bold text-[12px] tracking-tighter"
+              >
+                Total Dispathers
+              </p>
+              <div class="flex justify-center items-start mt-[-10px]">
+                <img class="" src="/assets/chevron-right.svg" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="lg:w-[88%px] w-[90%] mx-[5%] lg:mx-0 grapholder flex flex-col"
+        >
+          <div
+            class="flex justify-between flex-row items-center lg:w-[90%] lg:mx-[5%] mt-5"
+          >
+            <span
+              class="text-[#1C3738] font-semibold text-[20px] leading-[100%] tracking-[-0.05em]"
+              >Brief Statistic - App Usage</span
+            >
+            <div class="flex justify-between items-center">
+              <img class="" src="/assets/chevron-right.svg" /><span
+                ><select
+                  class="cursor-pointer rounded-sm"
+                  (change)="selectedvalue($any($event.target).value)"
+                >
+                  <option *ngFor="let year of years" [value]="year">
+                    {{ year }}
+                  </option>
+                </select> </span
+              ><img class="" src="/assets/chevron-right.svg" />
+            </div>
+          </div>
+          <div
+            class="flex justify-between flex-row items-center lg:w-[90%] lg:mx-[5%] mt-5"
+          >
+            <span
+              class="text-[#1C3738] font-bold text-[16px] leading-[100%] tracking-[-0.05em]"
+              >Progress score</span
+            >
+            <div class="flex lg:justify-between lg:items-center gap-5">
+              <div class="flex lg:justify-between items-center gap-2">
+                <div class="rounded-[50%] w-[10px] h-[10px] bg-[#3366FF]"></div>
+                <span>Request</span>
+              </div>
+              <div class="flex lg:justify-between lg:items-center">
+                <div class="flex lg:justify-between items-center gap-2">
+                  <div
+                    class="rounded-[50%] w-[10px] h-[10px] bg-[#00D68F]"
+                  ></div>
+                  <span>Customers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- goole-chart start-->
+          <div class="lg:w-full bg-[#f7f9fc] mt-20">
+            <div style="width: 100%">
+              <p-chart type="line" [data]="basicData" [options]="basicOptions">
+              </p-chart>
+            </div>
+          </div>
+          <!-- goole-chart end-->
+        </div>
+      </div>
+      <div class="flex flex-col gap-10 lg:w-[38%] w-full md:w-full pt-10">
+        <div class="flex flex-row justify-between lg:gap-28 w-full">
+          <p class="text-[#1C3738] font-bold">Top Dispatchers</p>
+          <img class="" src="/assets/chevron-right.svg" />
+        </div>
+        <div class="flex flex-col w-full">
+          <div
+            class="dispatcher md:h-24 lg:w-full w-[90%] mx-[5%] lg:mx-0 flex md:flex-row md:items-end flex-col items-center md:justify-between md:px-2 md:mt-2 pt-6 pb-6 md:mb-0"
+            *ngFor="let topdispatcher of topdrivers"
+          >
+            <img class="" src="/assets/dispatcher.svg" />
+            <div class="flex flex-col">
+              <p class="text-[#1C3738] font-bold text-[16px] leading-[100%]">
+                {{ topdispatcher.name }}
+              </p>
+              <small class="text-[#000F08] text-[12px] font-normal">{{
+                topdispatcher.phone
+              }}</small>
+            </div>
+            <p class="text-[#1C3738] text-[16px] font-normal leading-[100%]">
+              Request:{{ topdispatcher.AcceptedPackage.length }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- google-maps-demo.component.html start-->
+    <div
+      class="h-[700px] w-[90%] mx-[5%] rounded-[12px] mt-5 overflow-clip mb-12"
+    >
+      <app-googlemap></app-googlemap>
+    </div>
+    <!-- google-maps-demo.component.html end -->
+
+    <div
+      *ngIf="hidesimilarmodal"
+      class="similarmodal !absolute left-[40%] lg:w-[29%] h-[300px] py-6 flex flex-col items-center gap-4 px-3 top-[28%]"
+    >
+      <strong class="text-[#1C3738] font-bold text-[20px]">Notice</strong>
+      <p class="text-[#1C3738] font-bold text-[15px] text-center">
+        {{ errorMessage }}
+      </p>
+
+      <button
+        type="submit"
+        class="w-[70px] text-white bg-[#1C3738] py-2 cursor-pointer rounded-[4px] font-medium text-[16px] text-center"
+        (click)="closeSimilarModal()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

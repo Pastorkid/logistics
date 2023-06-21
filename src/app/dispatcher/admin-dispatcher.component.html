@@ -1,0 +1,26 @@
+<div class="divcontainer w-full bg-[#1E1E1E] flex lg:justify-end min-h-[100vh]">
+  <div
+    class="flex flex-col w-full lg:w-[84%] lg:ml-[15%] lg:mr-[1%] gap-6 bg-white lg:rounded-[30px] min-h-[1500px] justify-items-end my-4"
+  >
+    <div
+      class="flex items-center flex-row justify-between w-[90%] mx-[5%] lg:py-0 py-5 md:mt-5"
+    >
+      <div class="flex flex-row justify-start items-start gap-5">
+        <p
+          class="font-normal text-[#1C3738] text-[24px] leading-[100%] tracking-tighter"
+        >
+          <app-userlogin></app-userlogin>
+        </p>
+        <img class="leading-[60px]" src="/assets/hand_icon.svg" />
+      </div>
+
+      <img
+        class="cursor-pointer"
+        src="/assets/backbutton.svg"
+        (click)="onlogout()"
+        title="logout"
+      />
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

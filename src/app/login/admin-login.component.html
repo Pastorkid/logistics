@@ -1,0 +1,65 @@
+<div class="flex justify-center items-center w-full bg-[#1E1E1E] min-h-[100vh]">
+  <div
+    class="bg-white formcontainer min-h-[750px] flex lg:w-[70%] lg:mx-[15%] flex-col items-center md:w-[80%] md:mx-[10%] w-full md:my-[50px] lg:rounded-[10px] relative"
+  >
+    <img
+      class="md:w-[300px] w-[200px] md:mt-[120px] md:mb-[80px] mt-[80px] mb-[50px]"
+      src="/assets/ziklogisticslogo.svg"
+    />
+    <div class="flex flex-col items-start">
+      <div class="flex flex-col items-start md:w-auto md:mx-0 w-[90%] mx-[5%]">
+        <strong
+          class="font-medium md:text-[36px] text-[26px] text-[#1C3738] leading-[120%] tracking-tighter mb-4"
+        >
+          Sign In
+        </strong>
+        <p
+          class="font-medium text-[#1C3738] md:text-[20px] text-[19px] leading-[100%] tracking-tighter"
+        >
+          Enter your email and password to sign in
+        </p>
+      </div>
+      <form class="form w-full" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <formly-form
+          [model]="model"
+          [fields]="fields"
+          [options]="options"
+          [form]="form"
+        ></formly-form>
+        <div class="flex justify-center md:justify-start">
+          <button
+            type="submit"
+            class="md:w-[400px] text-white bg-[#1C3738] h-[50px] cursor-pointer rounded-[8px] w-[280px] font-semibold text-[16px] mt-[30px]"
+            [disabled]="!form.valid"
+          >
+            SIGN IN
+          </button>
+        </div>
+      </form>
+    </div>
+    <div
+      *ngIf="login"
+      class="absolute flex items-center justify-center w-full h-screen bg-blend-overlay bg-[#00000052]"
+    >
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div
+      *ngIf="hidesimilarmodal"
+      class="similarmodal !absolute left-[40%] lg:w-[29%] h-[300px] py-6 flex flex-col items-center gap-4 px-3 top-[28%]"
+    >
+      <strong class="text-[#1C3738] font-bold text-[20px]">Notice</strong>
+      <p class="text-[#1C3738] font-bold text-[15px] text-center">
+        {{ errorMessage }}
+      </p>
+
+      <button
+        type="submit"
+        class="w-[70px] text-white bg-[#1C3738] py-2 cursor-pointer rounded-[4px] font-medium text-[16px] text-center"
+        (click)="closeSimilarModal()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

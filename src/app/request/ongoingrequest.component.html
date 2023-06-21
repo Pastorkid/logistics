@@ -1,0 +1,121 @@
+<div class="flex items-center w-[90%] mx-[5%] relative">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 w-full"
+    *ngIf="dataSource"
+  >
+    <!-- Customer Column -->
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef>fullname</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex flex-row">
+          <div class="flex flex-row gap-[2px]">
+            <div
+              class="h-[50px] w-[50px] rounded-[50%] flex justify-center items-center border-[1px] border-solid"
+            >
+              <img
+                *ngIf="element.customerImage != undefined"
+                class="h-full w-full"
+                src="{{ element.customerImage }}"
+              />
+              <img
+                *ngIf="element.customerImage === undefined"
+                class="h-full w-full rounded-[50%]"
+                src="/assets/placeholder.jpg"
+              />
+            </div>
+            <div class="flex flex-col gap-[2px]">
+              <span
+                class="text-[#1C3738] font-medium text-[12px] leading-[150%] tracking-tighter"
+                >{{ element.name }}</span
+              >
+              <span
+                class="text-[#000F08] font-medium text-[10px] leading-[150%] tracking-tighter"
+                >{{ element.phone }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="D&T">
+      <th mat-header-cell *matHeaderCellDef>D&T</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex flex-col items-center">
+          <span class="mt-2">{{ element.distance.slice(0, 4) }}km</span>
+          <span>{{ element.duration.slice(0, 5) }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Distance_Time Column -->
+    <ng-container matColumnDef="Approx. W&S">
+      <th mat-header-cell *matHeaderCellDef>Approx. W&S</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex flex-col items-center">
+          <span>{{ element.width }}</span>
+          <span>{{ element.size }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Pick-up location">
+      <th mat-header-cell *matHeaderCellDef>Pick-up location</th>
+      <td mat-cell *matCellDef="let element">
+        <a
+          class="text-[#82C09A] underline text-[12px] font-medium cursor-pointer"
+          (click)="
+            emitpickup({
+              lat: element.pickup_lat,
+              lon: element.pickup_lon
+            })
+          "
+          >Google Map</a
+        >
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Drop-off location ">
+      <th mat-header-cell *matHeaderCellDef>Drop-off location</th>
+      <td mat-cell *matCellDef="let element">
+        <a
+          class="text-[#82C09A] underline text-[12px] font-medium cursor-pointer"
+          (click)="
+            emitpickup({
+              lat: element.dropoff_lat,
+              lon: element.dropoff_lon
+            })
+          "
+          >Google Map</a
+        >
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Income" class="">
+      <th mat-header-cell *matHeaderCellDef>Income</th>
+      <td mat-cell *matCellDef="let element" class="">
+        <div class="flex justify-center items-center incomediv h-[40px]">
+          <span class="text-center"> {{ element.price }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div *ngIf="ongoingactive" class="absolute left-[50%]">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+<div
+  class="w-[90%] mx-[5%] pt-3 items-center flex lg:justify-between relative mt-2"
+>
+  <div class="main-line w-full h-[2px] absolute top-0"></div>
+  <span class="text-[#232638] font-medium text-[17px]"
+    >Total Request: {{ packages.length }}</span
+  >
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    aria-label="select page of users"
+  ></mat-paginator>
+</div>

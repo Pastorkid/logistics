@@ -1,0 +1,162 @@
+<ul
+  class="lg:flex hidden flex-col fixed main mt-10"
+  *ngIf="isLoggedIn$ | async as isLoggedIn"
+>
+  <div class="bg-[#1E1E1E] w-full">
+    <div class="pb-10 pr-[2%] w-[12%] pl-[1%] ml-4">
+      <p class="font-bold text-white">{{ userDetails["name"] }}</p>
+      <span class="font-normal text-[12px] text-white">{{
+        userDetails["email"]
+      }}</span>
+    </div>
+  </div>
+  <div class="divcont" [hidden]="hide"></div>
+  <div class="w-full bg-[#1E1E1E] cursor-pointer" [routerLink]="['/board']">
+    <div
+      [ngClass]="getClassone()"
+      class="flex justify-start w-[99%] ml-[1%] items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] relative bgindicator"
+      (click)="hidedivone()"
+    >
+      <img
+        class="h-[16px] w-[16px] list-items-like lg:ml-4"
+        src="/assets/dashboard.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit"> Dashboard </span>
+    </div>
+  </div>
+  <div class="divcontt" [hidden]="hide"></div>
+  <div class="divcont" [hidden]="hideone"></div>
+  <div class="w-full bg-[#1E1E1E] cursor-pointer" [routerLink]="['/request']">
+    <div
+      [ngClass]="getClasstwo()"
+      class="flex justify-start w-[99%] ml-[1%] bgindicator items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] relative"
+      (click)="hidedivtwo()"
+    >
+      <img
+        class="h-[16px] w-[16px] list-items-like lg:ml-4"
+        src="/assets/request.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit"> Request </span>
+    </div>
+  </div>
+  <div class="divcontt" [hidden]="hideone"></div>
+  <div class="divcont" [hidden]="hidetwo"></div>
+  <div
+    class="w-full bg-[#1E1E1E] cursor-pointer"
+    [routerLink]="['/dispatcher']"
+  >
+    <div
+      [ngClass]="getClassthree()"
+      class="flex justify-start w-[99%] ml-[1%] items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] bgindicator"
+      (click)="hidedivthree()"
+    >
+      <img
+        class="h-[16px] w-[16px] list-items-like lg:ml-4"
+        src="/assets/dispatcher-icon.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit">
+        Dispatchers
+      </span>
+    </div>
+  </div>
+  <div class="divcontt" [hidden]="hidetwo"></div>
+  <div class="divcont" [hidden]="hidethree"></div>
+  <div class="w-full bg-[#1E1E1E] cursor-pointer" [routerLink]="['/customer']">
+    <div
+      [ngClass]="getClassfour()"
+      class="flex justify-start w-[99%] ml-[1%] items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] bgindicator"
+      (click)="hidedivfour()"
+    >
+      <img
+        class="h-[20px] w-[20px] list-items-like lg:ml-4"
+        src="/assets/customer.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit"> Customers </span>
+    </div>
+  </div>
+  <div class="divcontt" [hidden]="hidethree"></div>
+  <div class="divcont" [hidden]="hidefour"></div>
+  <div class="w-full bg-[#1E1E1E] cursor-pointer" [routerLink]="['/moderator']"*ngIf="userDetails.role==='SUPER_ADMIN'">
+    <div
+      [ngClass]="getClassfive()"
+      class="flex justify-start w-[99%] mx-[1%] items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] bgindicator"
+      (click)="hidedivfive()"
+    >
+      <img
+        class="h-[16px] w-[16px] list-items-like lg:ml-4"
+        src="/assets/mediator.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit">
+        Moderators
+      </span>
+    </div>
+  </div>
+  <div class="divend" [hidden]="hidefour"></div>
+  <div class="w-full bg-[#1E1E1E] h-screen"></div>
+</ul>
+
+<div
+  class="absolute flex bg-[#1C3738] z-[9999] top-0 right-0 w-[200px] h-screen lg:hidden flex-col items-center transition-all duration-300"
+  *ngIf="isLoggedIn$ | async as isLoggedIn"
+>
+  <div class="absolute left-6 mt-5">
+    <button
+      class="text-5xl border-0 background-none text-white font-bold cursor-pointer"
+    >
+      &times;
+    </button>
+  </div>
+  <ul
+    class="flex flex-col items-center w-full text-base cursor-pointer pt-20 ul-small"
+  >
+    <div
+      class="flex justify-start w-[99%] ml-[1%] items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] bgindicator"
+    >
+      <img
+        class="h-[20px] w-[20px] list-items-like lg:ml-4"
+        src="/assets/customer.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit"> Customers </span>
+    </div>
+    <div
+      class="flex justify-start w-[99%] ml-[1%] bgindicator items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] relative"
+    >
+      <img
+        class="h-[16px] w-[16px] list-items-like lg:ml-4"
+        src="/assets/request.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit"> Request </span>
+    </div>
+    <div
+      class="flex justify-start w-[99%] ml-[1%] items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] bgindicator"
+    >
+      <img
+        class="h-[16px] w-[16px] list-items-like lg:ml-4"
+        src="/assets/dispatcher-icon.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit">
+        Dispatchers
+      </span>
+    </div>
+    <div
+      class="flex justify-start w-[99%] ml-[1%] items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] bgindicator"
+    >
+      <img
+        class="h-[20px] w-[20px] list-items-like lg:ml-4"
+        src="/assets/customer.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit"> Customers </span>
+    </div>
+    <div
+      class="flex justify-start w-[99%] mx-[1%] items-center gap-5 cursor-pointer text-white pt-[12px] pb-[15px] bgindicator"
+    >
+      <img
+        class="h-[16px] w-[16px] list-items-like lg:ml-4"
+        src="/assets/mediator.svg"
+      />
+      <span class="font-semibold leading-[19px] text-inherit">
+        Moderators
+      </span>
+    </div>
+  </ul>
+</div>
